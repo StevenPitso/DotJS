@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<body>
+  <script src="../../dist/dotjs.js"></script>
+  <script>
+    // Create app
+    const app = createCanvas(600, 400, 
+     { 
+      use: '#canvas', background: '#1a1a2e'
+     });
+        
+    // Create shapes with chainable methods
+    const circle1 = circle(200, 300, 80).fill('#ff6b6b').stroke('#ffffff', 2).setRef('circle1');
+
+      let c1 = useRef('circle1')
+      c1.fill("#333") // change color after shape is already drawn or made :)
+
+    app.draw(() => {
+      c1.translate(1,0);
+    });
+
+  </script>
+</body>
+</html>

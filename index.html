@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DotJS Demo</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: #f8fafc;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+      }
+
+      .card {
+        background: #111827;
+        border: 1px solid #334155;
+        padding: 24px;
+        border-radius: 12px;
+        width: min(90vw, 900px);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+      }
+
+      canvas {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        display: block;
+        margin-top: 16px;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        background: #020617;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>DotJS is ready</h1>
+      <p>The library bundle is built and loaded from the dist folder.</p>
+      <canvas id="demoCanvas" width="800" height="480"></canvas>
+    </div>
+
+    <script src="./dist/dotjs.js"></script>
+    <script>
+      const canvas = document.getElementById('demoCanvas');
+      const app = dotjs.createCanvas(800, 480, { use: canvas, background: '#020617' });
+
+      dotjs.circle(400, 240, 120)
+        .fill('#38bdf8')
+        .stroke('#f8fafc', 3)
+        .setRef('demoCircle');
+
+      app.draw(() => {
+        const circle = dotjs.useRef('demoCircle');
+        if (circle) {
+          circle.x = 400 + Math.sin(Date.now() / 600) * 80;
+          circle.y = 240 + Math.cos(Date.now() / 800) * 60;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "name": "dotjs",
+  "version": "0.1.0",
+  "description": "High-performance creative coding library with Web Worker offloading",
+  "main": "dist/dotjs.js",
+  "module": "dist/dotjs.esm.js",
+  "worker": "dist/dotjs.worker.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "node scripts/build.js",
+    "build:worker": "node scripts/bundle-worker.js",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "lint": "eslint src/**/*.js",
+    "format": "prettier --write src/**/*.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "creative-coding",
+    "webworker",
+    "canvas",
+    "graphics",
+    "animation",
+    "p5js",
+    "dotjs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.5",
+    "rollup": "^4.12.0",
+    "vitest": "^1.2.2"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

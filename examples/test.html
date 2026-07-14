@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dot.js | Documentation</title
+        >
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #fcfaf7; color: #333; font-family: 'Inter', sans-serif; line-height: 1.6; }
+        .content { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+        pre { background: #f7f5f2; border: 1px solid #e5e5e5; padding: 1.5rem; border-radius: 0.5rem; overflow-x: auto; margin: 1.5rem 0; }
+        code { font-family: 'Courier New', monospace; color: #65a30d; }
+    </style>
+</head>
+<body>
+
+    <article class="content">
+        <header class="mb-16">
+            <h1 class="text-5xl font-black mb-4">dot.js</h1>
+            <p class="text-xl text-zinc-500">State-managed graphics library for HTML Canvas.</p>
+        </header>
+       
+               <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Quick Start</h2>
+            <p>Once installed, initialize your canvas and start drawing with the global context.(pending for future updates and testing)</p>
+            <pre><code>import { dot } from 'dotjs-core';
+dot.init('#myCanvas');</code></pre>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Installation</h2>
+            <p>Simply include the distributed script in your project or install via npm.</p>
+            <pre><code> Nothing yet ....</code></pre>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Core Philosophy</h2>
+            <p>Dot.js moves away from "fire-and-forget" canvas rendering. By maintaining a persistent <strong>Reference Registry</strong>, you can manipulate any shape or polygon long after it has been drawn to the screen.</p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Examples</h2>
+            
+            <div class="mt-8 border-t border-zinc-200 pt-8">
+                <h3 class="font-bold text-lg">1. Basic Shape Declaration</h3>
+                <pre><code>const box = rect(50, 50, 100, 100)
+  .fill("#6FFF00")
+  .setRef("hero-box");</code></pre>
+            </div>
+
+            <div class="mt-8 border-t border-zinc-200 pt-8">
+                <h3 class="font-bold text-lg">2. Remote Manipulation</h3>
+                <pre><code>useRef("hero-box")
+  .rotate(0.5)
+  .move(200, 200);</code></pre>
+            </div>
+        </section>
+
+        <footer class="mt-20 pt-8 border-t border-zinc-200 text-sm text-zinc-400">
+            <p>© 2026 Dot.js Studio | <a href="#" class="hover:text-black">View Source on GitHub</a></p>
+        </footer>
+    </article>
+
+</body>
+</html>
