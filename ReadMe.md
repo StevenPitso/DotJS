@@ -1,9 +1,9 @@
 
 
-```markdown
+
 # 🎯 dot.js
 
-**High-performance creative coding library with Web Worker offloading**
+** creative coding library with Web Worker offloading**
 
 > *"Everything starts with a Dot"*
 
