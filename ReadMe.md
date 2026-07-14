@@ -175,7 +175,7 @@ The dot.js architecture separates the API (Main Thread) from the Engine (Worker 
 
 
 ```bash
-git clone [https://github.com/StevenPitso/dotjs.git](https://github.com/StevenPitso/dotjs.git)
+git clone [https://github.com/yourusername/dotjs.git](https://github.com/yourusername/dotjs.git)
 npm install
 npm run build
 
