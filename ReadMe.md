@@ -83,7 +83,7 @@ npm install dotjs
 
 ```
 
-### CDN
+### CDN (Future Implementation) 
 
 ```html
 <script src="[https://cdn.jsdelivr.net/npm/dotjs/dist/dotjs.min.js](https://cdn.jsdelivr.net/npm/dotjs/dist/dotjs.min.js)"></script>
@@ -187,5 +187,5 @@ npm run build
 
 MIT License - see [LICENSE](https://www.google.com/search?q=LICENSE) for details.
 
-```
+
 
