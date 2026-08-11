@@ -1,7 +1,7 @@
 
 
 
-# 🎯 dot.js
+#  d●t.js
 
 ** creative coding library with Web Worker offloading**
 
@@ -11,20 +11,6 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-blue.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Web Workers](https://img.shields.io/badge/Web-Workers-green.svg)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
 [![npm version](https://img.shields.io/npm/v/dotjs.svg)](https://www.npmjs.com/package/dotjs)
-
----
-
-## 📖 Table of Contents
-
-- [Introduction](#introduction)
-- [Philosophy](#philosophy)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Core Concepts](#core-concepts)
-- [API Reference](#api-reference)
-- [Architecture](#architecture)
-- [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -72,23 +58,10 @@ Traditional libraries use nested object trees. dot.js uses a **Flat Registry**:
 
 All rendering and heavy computation runs in a Web Worker, ensuring your main UI thread stays locked at 60fps.
 
----
 
-## Installation
 
-### NPM
 
-```bash
-npm install dotjs
 
-```
-
-### CDN (Future Implementation) 
-
-```html
-<script src="[https://cdn.jsdelivr.net/npm/dotjs/dist/dotjs.min.js](https://cdn.jsdelivr.net/npm/dotjs/dist/dotjs.min.js)"></script>
-
-```
 
 ---
 
