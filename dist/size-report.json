@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-08-28T11:18:37.230Z",
+  "files": [
+    {
+      "file": "dotjs.esm.js",
+      "size": 166776,
+      "sizeStr": "162.87 KB"
+    },
+    {
+      "file": "dotjs.esm.js.map",
+      "size": 334113,
+      "sizeStr": "326.28 KB"
+    },
+    {
+      "file": "dotjs.js",
+      "size": 172834,
+      "sizeStr": "168.78 KB"
+    },
+    {
+      "file": "dotjs.js.map",
+      "size": 334120,
+      "sizeStr": "326.29 KB"
+    },
+    {
+      "file": "dotjs.min.js",
+      "size": 70840,
+      "sizeStr": "69.18 KB"
+    },
+    {
+      "file": "dotjs.min.js.map",
+      "size": 260131,
+      "sizeStr": "254.03 KB"
+    },
+    {
+      "file": "dotjs.worker.js",
+      "size": 80,
+      "sizeStr": "0.08 KB"
+    },
+    {
+      "file": "dotjs.worker.js.map",
+      "size": 103,
+      "sizeStr": "0.10 KB"
+    },
+    {
+      "file": "dotjs.worker.min.js",
+      "size": 84,
+      "sizeStr": "0.08 KB"
+    },
+    {
+      "file": "dotjs.worker.min.js.map",
+      "size": 100,
+      "sizeStr": "0.10 KB"
+    }
+  ],
+  "total": 1339181,
+  "totalStr": "1.28 MB"
+}

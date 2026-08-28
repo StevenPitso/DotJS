@@ -1,65 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DotJS Demo</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dot.js — State-Driven HTML5 Canvas Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #0f172a;
-        color: #f8fafc;
-        display: grid;
-        place-items: center;
-        min-height: 100vh;
-      }
+        :root {
+            --bg: #ffffff;
+            --text: #111111;
+            --muted: #666666;
+            --border: #cccccc;
+            --code-bg: #f4f4f5;
+            --accent: #84cc16; /* Vibrant Lime Green */
+            --accent-hover: #65a30d;
+            --accent-darker: #068b06;
+        }
 
-      .card {
-        background: #111827;
-        border: 1px solid #334155;
-        padding: 24px;
-        border-radius: 12px;
-        width: min(90vw, 900px);
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
-      }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-      canvas {
-        width: 100%;
-        max-width: 800px;
-        height: auto;
-        display: block;
-        margin-top: 16px;
-        border: 1px solid #334155;
-        border-radius: 8px;
-        background: #020617;
-      }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            max-width: 760px;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+
+        header {
+            border-bottom: 2px solid var(--text);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 0.25rem;
+        }
+
+        .logo-title span {
+            color: var(--accent);
+        }
+
+        .tagline {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        nav {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: underline;
+        }
+
+        nav a:hover {
+            color: var(--accent-hover);
+        }
+
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--text);
+            color: var(--bg);
+            padding: 0.35rem 0.75rem;
+            text-decoration: none !important;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .github-btn:hover {
+            background-color: var(--accent-hover);
+            color: #ffffff;
+        }
+
+        .github-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.25rem;
+            margin-bottom: 1rem;
+            text-transform: lowercase;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #333333;
+        }
+
+        .ecosystem-table, .roadmap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .ecosystem-table th, .ecosystem-table td,
+        .roadmap-table th, .roadmap-table td {
+            border: 1px solid var(--border);
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+        }
+
+        .ecosystem-table th, .roadmap-table th {
+            background-color: var(--code-bg);
+            font-weight: 700;
+        }
+
+        .ecosystem-table a {
+            color: var(--text);
+            text-decoration: underline;
+        }
+
+        .ecosystem-table a:hover {
+            color: var(--accent-hover);
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            padding: 0.1rem 0.3rem;
+            border: 1px solid var(--border);
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+            margin-top: 3rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
-  </head>
-  <body>
-    <div class="card">
-      <h1>DotJS is ready</h1>
-      <p>The library bundle is built and loaded from the dist folder.</p>
-      <canvas id="demoCanvas" width="800" height="480"></canvas>
+</head>
+<body>
+
+    <header>
+        <div class="logo-title">d<span style="color: var(--accent);">●</span>t.js</div>
+        <div class="tagline">A state-driven HTML5 canvas library built on a flat registry with O(1) lookups for performance.</div>
+        <nav>
+            <a href="#ecosystem">ecosystem</a>
+            <a href="#philosophy">philosophy</a>
+            <a href="#cheatsheet">cheatsheet</a>
+            <a href="#versions">versions</a>
+            <a href="https://github.com/StevenPitso/DotJS" target="_blank" class="github-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                github
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="ecosystem">
+            <h2>01. ecosystem context</h2>
+            <p>Where standard tools focus elsewhere, dot.js is engineered specifically for granular state management.</p>
+            <table class="ecosystem-table">
+                <tr>
+                    <th>Library</th>
+                    <th>Core Specialisation & Link</th>
+                </tr>
+                <tr>
+                    <td><strong>p5.js</strong></td>
+                    <td>Great interface & creative coding foundation. <a href="https://p5js.org" target="_blank">p5js.org &rarr;</a></td>
+                </tr>
+                <tr>
+                    <td><strong>q5.js</strong></td>
+                    <td>Extreme drop-in speed & minimalist execution. <a href="https://github.com/q5js/q5.js" target="_blank">q5js repo &rarr;</a></td>
+                </tr>
+                <tr>
+                    <td><strong>d3.js</strong></td>
+                    <td>Dominates data-driven document visualisations. <a href="https://d3js.org" target="_blank">d3js.org &rarr;</a></td>
+                </tr>
+                <tr>
+                    <td><strong><span style="color: var(--accent-darker); font-weight: bold;">dot.js</span></strong></td>
+                    <td><strong><span style="color: var(--accent-darker); font-weight: bold;">State management & persistent element reference registry.</span></strong></td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="philosophy">
+            <h2>02. philosophy</h2>
+            <p>Everything fundamentally starts with a dot. To solve the old age question of shapes, polygons, lines, or simply drawn elements being baked straight into static pixels, <strong>dot.js</strong> uses a reference architecture.</p>
+            <p>Every shape or line drawn on the canvas is given a reference to allow properties to be changed later. This was made to increase control of elements made.</p>
+        </section>
+
+        <section id="cheatsheet">
+            <h2>03. cheatsheet for beginners</h2>
+            <p>Initialize your canvas and assign persistent references for O(1) lookups:</p>
+            <pre><code>// Include via CDN
+&lt;script src="https://stevenpitso.github.io/DotJS/dist/dotjs.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // Initialize state-driven canvas
+  const app = createCanvas({
+    use: '#canvas',
+    background: '#ffffff'
+  });
+
+  // Create shape and register reference
+  circle(400, 300, 80)
+    .fill('#84cc16')
+    .setRef('myDot');
+
+  // Modify properties later without clearing canvas
+  app.draw(() => {
+    const dot = useRef('myDot');
+    if (dot) dot.rotate(0.02);
+  });
+&lt;/script&gt;</code></pre>
+        </section>
+
+        <section id="versions">
+            <h2>04. version roadmap</h2>
+            <p>Select a version below to copy its CDN bundle or review release status:</p>
+            <table class="roadmap-table">
+                <tr>
+                    <th>Version</th>
+                    <th>Status & Description</th>
+                    <th>CDN Bundle / Action</th>
+                </tr>
+                <tr>
+                    <td><code>v0.0.1</code></td>
+                    <td>Unstable --> Initial canvas foundation (no state management).</td>
+                    <td><span style="color: var(--muted); cursor: not-allowed; text-decoration: line-through;">unavailable</span></td>
+                </tr>
+                <tr>
+                    <td><code>v0.0.2</code></td>
+                    <td>Experimental --> State management unstable, working on adding new elements.</td>
+                    <td><span style="color: var(--muted); cursor: not-allowed; text-decoration: line-through;">unavailable</span></td>
+                </tr>
+                <tr>
+                    <td><code>v0.1.0</code></td>
+                    <td><strong>Current</strong> --> Fairly stable release with O(1) lookups.</td>
+                    <td>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+                            <a href="#" onclick="event.preventDefault(); copyCDN();" class="github-btn" style="background-color: var(--accent); color: var(--text); padding: 0.2rem 0.5rem; font-size: 0.8rem; text-decoration: none !important;">copy cdn &rarr;</a>
+                            <a href="https://github.com/StevenPitso/DotJS/releases/tag/v0.1.0" target="_blank" class="github-btn" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                github release
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>v1.2.1</code></td>
+                    <td> <span style=" color: var(--accent-darker); font-weight: bold;"> Coming Soon</span> --> Advanced worker offloading & reactive bindings.</td>
+                    <td><span style="color: var(--muted); cursor: not-allowed;"> nothing here yet  </span></td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <div>built by Steven <span style="color: var(--accent-darker); font-weight: bolder;"> Pitso </span> </div>
+        <div>mit license</div>
+    </footer>
+
+    <!-- Custom Modal for Copy Feedback -->
+    <div id="toast" style="position: fixed; bottom: 2rem; right: 2rem; background: var(--text); color: var(--bg); padding: 0.75rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: none; z-index: 1000;">
+        CDN link copied to clipboard!
     </div>
 
-    <script src="./dist/dotjs.js"></script>
     <script>
-      const canvas = document.getElementById('demoCanvas');
-      const app = dotjs.createCanvas(800, 480, { use: canvas, background: '#020617' });
-
-      dotjs.circle(400, 240, 120)
-        .fill('#38bdf8')
-        .stroke('#f8fafc', 3)
-        .setRef('demoCircle');
-
-      app.draw(() => {
-        const circle = dotjs.useRef('demoCircle');
-        if (circle) {
-          circle.x = 400 + Math.sin(Date.now() / 600) * 80;
-          circle.y = 240 + Math.cos(Date.now() / 800) * 60;
+        function copyCDN() {
+            const textToCopy = "https://stevenpitso.github.io/DotJS/dist/dotjs.min.js";
+            const textarea = document.createElement("textarea");
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+            document.body.removeChild(textarea);
         }
-      });
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
+        }
     </script>
-  </body>
+</body>
 </html>

@@ -106,7 +106,7 @@ const server = http.createServer((req, res) => {
 
   // Handle root
   if (filePath === '/') {
-    filePath = '/src/test/index.html';
+    filePath = '../tests/index.html';
   }
 
   // Build full path
